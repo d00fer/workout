@@ -1,26 +1,15 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 import express from 'express'
-import cors from 'cors'
 
-import connectDB from './connectDB.js'
-//import Book from './models/Books.js'
+import workoutRoutes from './routes/workouts.js'
 
-const PORT = process.env.PORT || 8000
-
-connectDB()
 const app = express()
-//man in the middle
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-//our DB connection
+const port = process.env.PORT || 2000
 
-app.get('/', (req, res) => {
-  res.json('fuck you')
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
 })
 
-app.listen(PORT, () => {
-  console.log(`i am listening on port: ${PORT}`)
-})
+app.use(workoutRoutes)
+
+app.listen(port)
