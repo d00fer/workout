@@ -1,18 +1,18 @@
 import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema
+const { Schema, model } = mongoose
 
-const workoutSchema = new Schema(
+const WorkoutsSchema = new Schema(
   {
     title: {
       type: String,
       require: true,
     },
-    load: {
+    reps: {
       type: Number,
       require: true,
     },
-    reps: {
+    load: {
       type: Number,
       require: true,
     },
@@ -20,4 +20,5 @@ const workoutSchema = new Schema(
   { timestamps: true },
 )
 
-export default mongoose.model('Workout', workoutSchema)
+const Workout = model('Workout', WorkoutsSchema)
+export default Workout
