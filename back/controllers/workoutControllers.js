@@ -1,4 +1,5 @@
 import Workout from '../models/workoutModel.js'
+import mongoose from 'mongoose'
 
 //get all workouts
 const getWorkouts = async (req, res) => {
@@ -12,7 +13,9 @@ const getWorkouts = async (req, res) => {
 //get a single workout
 const getWorkout = async (req, res) => {
   const { id } = req.params
-  //heare we need to have a look after
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'no workout of this id' })
+  }
   try {
     const workout = await Workout.findById(id)
     res.status(200).json(workout)
@@ -31,5 +34,35 @@ const createWorkout = async (req, res) => {
     res.status(400).json({ error: e.message })
   }
 }
+//update workout
+const updateWorkout = async (req, res) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'no workout of this id' })
+  }
 
-export { createWorkout, getWorkouts, getWorkout }
+  const workout = await Workout.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    },
+  )
+  if (!workout) {
+    return res.status(400).json({ error: 'no such workout' })
+  }
+  res.status(200).json(Workout)
+}
+//delete workout
+const deleteWorkout = async (req, res) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: ' no workout to delete!' })
+  }
+  const workout = await Workout.findOneAndDelete({ _id: id })
+  if (!workout) {
+    return res.status(400).json({ error: 'nothing like this on server' })
+  }
+  res.status(200).json(workout)
+}
+
+export { createWorkout, getWorkouts, getWorkout, updateWorkout, deleteWorkout }
