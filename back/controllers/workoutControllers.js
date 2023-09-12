@@ -21,7 +21,6 @@ const getWorkout = async (req, res) => {
     res.status(200).json(workout)
   } catch (e) {
     res.status(404).json({ error: e.message })
-    console.log('o kurwa o chuj')
   }
 }
 //create new workout
