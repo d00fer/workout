@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+import WorkoutDetails from '../components/WorkoutDetails'
 const Home = () => {
   const [workouts, setWorkouts] = useState(null)
 
@@ -7,7 +7,6 @@ const Home = () => {
     const fetchWorkouts = async () => {
       const response = await fetch('/api/workouts')
       const json = await response.json()
-      console.log(json)
       if (response.ok) {
         setWorkouts(json)
       }
@@ -19,7 +18,9 @@ const Home = () => {
     <div className="home">
       <div className="workouts">
         {workouts &&
-          workouts.map((workout) => <p key={workout._id}>{workout.title}</p>)}
+          workouts.map((workout) => (
+            <WorkoutDetails key={workout._id} workout={workout} />
+          ))}
       </div>
     </div>
   )
