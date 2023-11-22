@@ -1,3 +1,5 @@
-### workout app to track reps and sets.
-backend api node and express 
-frontend react 
+# ** workout app. **
+
+## full-fledged **CRUD** app 
+
+
