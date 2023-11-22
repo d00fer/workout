@@ -1,7 +1,6 @@
 {
-  "name": "",
+  "name": "api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "license": "AGPL-version-3.0",
@@ -10,7 +9,6 @@
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
   },
-  "homepage": "",
   "repository": {
     "type": "git",
     "url": ""
