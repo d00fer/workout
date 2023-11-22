@@ -1,4 +1,4 @@
-# ** workout app. **
+# **workout app**
 
 ## full-fledged **CRUD** app 
 
