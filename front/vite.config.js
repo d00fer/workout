@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/workouts': {
-        target: 'http://localhost:4000',
+        target: 'https://api-fu85.onrender.com/',
         changeOrigin: true,
       },
     },
