@@ -7,29 +7,36 @@ const WorkoutForm = () => {
 
   return (
     <form className="create">
-      <h3>Add New Workout</h3>
+      <h3>Add new workout</h3>
 
-      <label>Exercise title:</label>
+      <label>Exercise Title:</label>
       <input
         type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value)
+        }}
+        vaulue={title}
       />
 
-      <label>Load in (kg):</label>
+      <label>Exercise load in (KG):</label>
       <input
         type="number"
-        onChange={(e) => setLoad(e.target.value)}
+        onChange={(e) => {
+          setLoad(e.target.value)
+        }}
         value={load}
       />
 
-      <label>Reps:</label>
+      <label>Exercies reps:</label>
       <input
         type="number"
-        onChange={(e) => setReps(e.target.value)}
+        onChange={(e) => {
+          setReps(e.target.value)
+        }}
         value={reps}
       />
-      <button>Add workout </button>
+
+      <button>Submit</button>
     </form>
   )
 }
