@@ -4,9 +4,36 @@ const WorkoutForm = () => {
   const [title, setTitle] = useState('')
   const [load, setLoad] = useState('')
   const [reps, setReps] = useState('')
+  const [error, setError] = useState(null)
 
+  const handleSubmit = async (e) => {
+		e.preventDefault()
+
+		const newWorkout = {
+			title,
+			load,
+			reps,
+		}
+    	const res = await fetch('api/workouts', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(newWorkout),
+			})
+
+		const json = await res.json()
+		if(!res.ok){
+			setError(json.error)
+		}
+		if(res.ok){
+			setTitle('')
+			setLoad('')
+			setReps('')
+			setError(null)
+		}	
+	}
+	   
   return (
-    <form className="create">
+    <form className="create" onSubmit={handleSubmit}>
       <h3>Add new workout</h3>
 
       <label htmlFor="title">Exercise Title</label>
